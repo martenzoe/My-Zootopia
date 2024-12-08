@@ -4,21 +4,24 @@ def load_data(file_path):
     with open(file_path, 'r') as file:
         return json.load(file)
 
+
 def generate_animal_string(animals):
     output = ''
     for animal in animals:
         output += '<li class="cards__item">\n'
-        output += f"Name: {animal.get('name', '')}<br/>\n"
+        output += f'  <div class="card__title">{animal.get("name", "")}</div>\n'
+        output += '  <p class="card__text">\n'
 
         if 'characteristics' in animal and 'diet' in animal['characteristics']:
-            output += f"Diet: {animal['characteristics']['diet']}<br/>\n"
+            output += f'      <strong>Diet:</strong> {animal["characteristics"]["diet"]}<br/>\n'
 
         if 'locations' in animal and animal['locations']:
-            output += f"Location: {animal['locations'][0]}<br/>\n"
+            output += f'      <strong>Location:</strong> {animal["locations"][0]}<br/>\n'
 
         if 'characteristics' in animal and 'type' in animal['characteristics']:
-            output += f"Type: {animal['characteristics']['type']}<br/>\n"
+            output += f'      <strong>Type:</strong> {animal["characteristics"]["type"]}<br/>\n'
 
+        output += '  </p>\n'
         output += '</li>\n'
 
     return output
